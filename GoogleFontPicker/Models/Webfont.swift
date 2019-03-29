@@ -12,13 +12,24 @@ import UIKit
 
 protocol Webfont: class {
     
+    var identifier: String { get }
+    
+    var providerIdentifier: String { get }
+    
     var familyName: String { get }
     
     var variant: String { get }
     
-    var font: UIFont? { get }
-    
     var onlineUrl: URL { get }
     
-    var localUrl: URL? { get }
+    var localFileName: String { get }
+    
+}
+
+extension Webfont {
+    
+    var identifier: String {
+        return self.providerIdentifier + ":" + self.familyName + "/" + self.variant
+    }
+    
 }

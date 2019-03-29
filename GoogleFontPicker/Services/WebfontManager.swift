@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol WebfontManagerEventListener: class {
     
@@ -22,7 +23,15 @@ protocol WebfontManager: class {
     
     var eventListener: WebfontManagerEventListener? { get set }
     
+    var webfontFamilies: [WebfontFamily] { get }
+    
     func fetchWebfontList()
+    
+    func defaultWebfont(for family: WebfontFamily) -> Webfont
+    
+    func webfont(for family: WebfontFamily, with variant: String) -> Webfont?
+    
+    func font(of webfont: Webfont, size: CGFloat) -> UIFont?
     
     func downloadFont(for webfont: Webfont)
     

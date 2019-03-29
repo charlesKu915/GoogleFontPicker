@@ -24,30 +24,27 @@ class WebfontFamilyRepository: RealmRepository<String, WebfontFamily, WebfontFam
         result.subsets = entity.subsets.joined(separator: ",")
         result.variants = entity.variants.joined(separator: ",")
         result.version = entity.version
-        result.lastModified = entity.lastModified
+        result.defaultVariant = entity.defaultVariant
         
         return result
     }
     
     override func fromRealmObject(_ object: WebfontFamilyObject) throws -> WebfontFamily {
-        switch object.providerIdentifier {
-        case "google":
-            return try GoogleWebfontFamily(withRealm: object)
-        default:
-            throw Failure.unexpected
-        }
+        return try DefaultWebfontFamily(withRealm: object)
     }
     
 }
 
-extension GoogleWebfontFamily {
+extension DefaultWebfontFamily {
     
     convenience init(withRealm object: WebfontFamilyObject) throws {
-        self.init(familyName: object.name,
+        self.init(providerIdentifier: object.providerIdentifier,
+                  familyName: object.name,
                   category: object.category,
                   variants: object.variants.components(separatedBy: ","),
                   subsets: object.subsets.components(separatedBy: ","),
                   version: object.version,
-                  lastModified: Date())
+                  defaultVariant: object.defaultVariant)
     }
+    
 }

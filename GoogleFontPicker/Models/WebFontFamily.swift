@@ -22,13 +22,9 @@ protocol WebfontFamily: class {
     
     var subsets: [String] { get }
     
-    var lastModified: Date { get }
-    
     var version: String { get }
     
-    var defaultWebfont: Webfont { get }
-    
-    func webFont(variant: String) -> Webfont?
+    var defaultVariant: String { get }
     
 }
 

@@ -8,6 +8,14 @@
 
 import Foundation
 
+
+protocol WebfontVersionComparator {
+    
+    func needUpdage(for webfontFamily: WebfontFamily) -> Bool
+    
+}
+
+
 enum FetchWebfontListResult {
     case success(webfontFamilies: [WebfontFamily], webfonts: [Webfont])
     case failed(reason: Error)
@@ -23,10 +31,12 @@ typealias DownloadWebfontResultHandler = (DownloadWebfontResult) -> Void
 
 protocol WebfontProvider: class {
     
-    var webfontFamilies: [WebfontFamily] { get }
+    static var providerIdentifier: String { get }
+    
+    var versionComparator: WebfontVersionComparator? { get set }
     
     func fetchWebfontList(handleBy handler: @escaping FetchWebfontListResultHandler)
     
-    func download(font: Webfont, handleBy handler: @escaping DownloadWebfontResultHandler)
-    
 }
+
+

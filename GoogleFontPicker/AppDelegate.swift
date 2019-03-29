@@ -21,11 +21,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         do {
             self.realm = try Realm(configuration: .defaultConfiguration)
             print(self.realm?.configuration.fileURL)
-            self.webfontManager = DefaultWebfontManager(familyRepository: WebfontFamilyRepository(self.realm!),googleFontApiKey: "AIzaSyBJOnY-rjORFDkzR6OU9--21mIKae33p30")
-            self.webfontManager?.fetchWebfontList()
+            self.webfontManager = DefaultWebfontManager(familyRepository: WebfontFamilyRepository(self.realm!),
+                                                        fontRepository: WebfontRepository(self.realm!),
+                                                        googleFontApiKey: "AIzaSyBJOnY-rjORFDkzR6OU9--21mIKae33p30")
         } catch {
             
         }
+        
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        let rootViewController = FontPickerViewController(nibName: "FontPickerViewController", bundle: Bundle.main)
+        rootViewController.webfontManager = self.webfontManager
+        self.window?.rootViewController = rootViewController
+        self.window?.makeKeyAndVisible()
         
         return true
     }
@@ -51,7 +58,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
+    
 }
 

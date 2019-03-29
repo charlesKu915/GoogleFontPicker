@@ -10,8 +10,10 @@ import Alamofire
 
 class GoogleWebfontProvider: WebfontProvider {
     
-    var webfontFamilies: [WebfontFamily] {
-        return []
+    var versionComparator: WebfontVersionComparator?
+    
+    static var providerIdentifier: String {
+        return "google"
     }
     
     private var apiKey: String
@@ -25,34 +27,35 @@ class GoogleWebfontProvider: WebfontProvider {
             if let object = response.value as? [String: Any],
                 let items = object["items"] as? [[String: Any]] {
                 var families: [WebfontFamily] = []
+                var fonts: [Webfont] = []
                 for item in items {
                     do {
-                        let family = try GoogleWebfontFamily(with: item)
-                        families.append(family)
+                        let family = try DefaultWebfontFamily(with: item)
+                        if self.versionComparator?.needUpdage(for: family) ?? true {
+                            families.append(family)
+                            if let files = item["files"] as? [String: String] {
+                                for variant in family.variants {
+                                    if let filePath = files[variant], let onlineUrl = URL(string: filePath) {
+                                        fonts.append(DefaultWebfont(providerIdentifier: GoogleWebfontProvider.providerIdentifier, familName: family.name, variant: variant, onlineUrl: onlineUrl))
+                                    } else {
+                                        // Wired... it should not be happened, caused by server error
+                                    }
+                                }
+                            }
+                        } else {
+                            // No need to append to array because there is no difference with local
+                        }
                     } catch {
-                        print("format issue")
+                        // Issue occured
                     }
                 }
-                handler(.success(webfontFamilies: families, webfonts: []))
+                handler(.success(webfontFamilies: families, webfonts: fonts))
             } else if let error = response.error {
                 handler(.failed(reason: error))
             }
         }
     }
     
-    func download(font: Webfont, handleBy handler: @escaping DownloadWebfontResultHandler) {
-        let destination: DownloadRequest.DownloadFileDestination = { _, _ in
-            let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-            let fileURL = documentsURL.appendingPathComponent("\(font.onlineUrl.lastPathComponent)\(font.onlineUrl.pathExtension)")
-            
-            return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
-        }
-        
-        Alamofire.download(font.onlineUrl, to: destination).downloadProgress { progress in
-            
-        }.responseJSON { response in
-            
-        }
-    }
+    
     
 }
