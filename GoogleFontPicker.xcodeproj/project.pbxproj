@@ -1,0 +1,500 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		12A5EA67224CA226005EC37A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A5EA66224CA226005EC37A /* AppDelegate.swift */; };
+		12A5EA69224CA226005EC37A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A5EA68224CA226005EC37A /* ViewController.swift */; };
+		12A5EA6C224CA226005EC37A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12A5EA6A224CA226005EC37A /* Main.storyboard */; };
+		12A5EA6E224CA228005EC37A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12A5EA6D224CA228005EC37A /* Assets.xcassets */; };
+		12A5EA71224CA228005EC37A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12A5EA6F224CA228005EC37A /* LaunchScreen.storyboard */; };
+		12A5EA7A224CA393005EC37A /* WebfontProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A5EA79224CA393005EC37A /* WebfontProvider.swift */; };
+		12A5EA7D224CA469005EC37A /* WebfontFamily.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A5EA7C224CA469005EC37A /* WebfontFamily.swift */; };
+		12A5EA7F224CF044005EC37A /* Webfont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A5EA7E224CF044005EC37A /* Webfont.swift */; };
+		12A5EA81224CF30D005EC37A /* GoogleWebfontProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A5EA80224CF30D005EC37A /* GoogleWebfontProvider.swift */; };
+		12A5EA83224CF393005EC37A /* WebfontManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A5EA82224CF393005EC37A /* WebfontManager.swift */; };
+		12A5EA85224CF3B6005EC37A /* DefaultWebfontManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A5EA84224CF3B6005EC37A /* DefaultWebfontManager.swift */; };
+		12A5EA87224DAF94005EC37A /* GoogleWebfontFamily.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A5EA86224DAF94005EC37A /* GoogleWebfontFamily.swift */; };
+		12A5EA89224DB0DE005EC37A /* Failure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A5EA88224DB0DE005EC37A /* Failure.swift */; };
+		12A5EA8C224DB305005EC37A /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A5EA8B224DB305005EC37A /* Repository.swift */; };
+		12A5EA8E224DB328005EC37A /* RealmRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A5EA8D224DB328005EC37A /* RealmRepository.swift */; };
+		12A5EA90224DB37A005EC37A /* WebfontFamilyObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A5EA8F224DB37A005EC37A /* WebfontFamilyObject.swift */; };
+		12A5EA92224DB3B4005EC37A /* WebfontFamilyRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A5EA91224DB3B4005EC37A /* WebfontFamilyRepository.swift */; };
+		8A06A5B469B7CA92F737DC97 /* Pods_GoogleFontPicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E112B9EDB8136C60DA850DA /* Pods_GoogleFontPicker.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0E112B9EDB8136C60DA850DA /* Pods_GoogleFontPicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoogleFontPicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		12A5EA63224CA226005EC37A /* GoogleFontPicker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoogleFontPicker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		12A5EA66224CA226005EC37A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		12A5EA68224CA226005EC37A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		12A5EA6B224CA226005EC37A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		12A5EA6D224CA228005EC37A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		12A5EA70224CA228005EC37A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		12A5EA72224CA228005EC37A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		12A5EA79224CA393005EC37A /* WebfontProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebfontProvider.swift; sourceTree = "<group>"; };
+		12A5EA7C224CA469005EC37A /* WebfontFamily.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebfontFamily.swift; sourceTree = "<group>"; };
+		12A5EA7E224CF044005EC37A /* Webfont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Webfont.swift; sourceTree = "<group>"; };
+		12A5EA80224CF30D005EC37A /* GoogleWebfontProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleWebfontProvider.swift; sourceTree = "<group>"; };
+		12A5EA82224CF393005EC37A /* WebfontManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebfontManager.swift; sourceTree = "<group>"; };
+		12A5EA84224CF3B6005EC37A /* DefaultWebfontManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWebfontManager.swift; sourceTree = "<group>"; };
+		12A5EA86224DAF94005EC37A /* GoogleWebfontFamily.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleWebfontFamily.swift; sourceTree = "<group>"; };
+		12A5EA88224DB0DE005EC37A /* Failure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Failure.swift; sourceTree = "<group>"; };
+		12A5EA8B224DB305005EC37A /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		12A5EA8D224DB328005EC37A /* RealmRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRepository.swift; sourceTree = "<group>"; };
+		12A5EA8F224DB37A005EC37A /* WebfontFamilyObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebfontFamilyObject.swift; sourceTree = "<group>"; };
+		12A5EA91224DB3B4005EC37A /* WebfontFamilyRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebfontFamilyRepository.swift; sourceTree = "<group>"; };
+		B45ACE21E4D12DAC448ADC6F /* Pods-GoogleFontPicker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoogleFontPicker.release.xcconfig"; path = "Pods/Target Support Files/Pods-GoogleFontPicker/Pods-GoogleFontPicker.release.xcconfig"; sourceTree = "<group>"; };
+		F5782031B14A0EA9F7A04E54 /* Pods-GoogleFontPicker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoogleFontPicker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GoogleFontPicker/Pods-GoogleFontPicker.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		12A5EA60224CA226005EC37A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8A06A5B469B7CA92F737DC97 /* Pods_GoogleFontPicker.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		12A5EA5A224CA226005EC37A = {
+			isa = PBXGroup;
+			children = (
+				12A5EA65224CA226005EC37A /* GoogleFontPicker */,
+				12A5EA64224CA226005EC37A /* Products */,
+				797BF18DEB26D0115137AC21 /* Pods */,
+				132203D3C029B6034DD3F8C8 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		12A5EA64224CA226005EC37A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				12A5EA63224CA226005EC37A /* GoogleFontPicker.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		12A5EA65224CA226005EC37A /* GoogleFontPicker */ = {
+			isa = PBXGroup;
+			children = (
+				12A5EA72224CA228005EC37A /* Info.plist */,
+				12A5EA66224CA226005EC37A /* AppDelegate.swift */,
+				12A5EA88224DB0DE005EC37A /* Failure.swift */,
+				12A5EA68224CA226005EC37A /* ViewController.swift */,
+				12A5EA6D224CA228005EC37A /* Assets.xcassets */,
+				12A5EA6F224CA228005EC37A /* LaunchScreen.storyboard */,
+				12A5EA6A224CA226005EC37A /* Main.storyboard */,
+				12A5EA7B224CA44F005EC37A /* Models */,
+				12A5EA8A224DB24D005EC37A /* Repository */,
+				12A5EA78224CA381005EC37A /* Services */,
+			);
+			path = GoogleFontPicker;
+			sourceTree = "<group>";
+		};
+		12A5EA78224CA381005EC37A /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				12A5EA79224CA393005EC37A /* WebfontProvider.swift */,
+				12A5EA80224CF30D005EC37A /* GoogleWebfontProvider.swift */,
+				12A5EA82224CF393005EC37A /* WebfontManager.swift */,
+				12A5EA84224CF3B6005EC37A /* DefaultWebfontManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		12A5EA7B224CA44F005EC37A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				12A5EA7C224CA469005EC37A /* WebfontFamily.swift */,
+				12A5EA7E224CF044005EC37A /* Webfont.swift */,
+				12A5EA86224DAF94005EC37A /* GoogleWebfontFamily.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		12A5EA8A224DB24D005EC37A /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				12A5EA94224DB4DA005EC37A /* Webfont */,
+				12A5EA93224DB4C8005EC37A /* WebfontFamily */,
+				12A5EA8B224DB305005EC37A /* Repository.swift */,
+				12A5EA8D224DB328005EC37A /* RealmRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		12A5EA93224DB4C8005EC37A /* WebfontFamily */ = {
+			isa = PBXGroup;
+			children = (
+				12A5EA8F224DB37A005EC37A /* WebfontFamilyObject.swift */,
+				12A5EA91224DB3B4005EC37A /* WebfontFamilyRepository.swift */,
+			);
+			path = WebfontFamily;
+			sourceTree = "<group>";
+		};
+		12A5EA94224DB4DA005EC37A /* Webfont */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Webfont;
+			sourceTree = "<group>";
+		};
+		132203D3C029B6034DD3F8C8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0E112B9EDB8136C60DA850DA /* Pods_GoogleFontPicker.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		797BF18DEB26D0115137AC21 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F5782031B14A0EA9F7A04E54 /* Pods-GoogleFontPicker.debug.xcconfig */,
+				B45ACE21E4D12DAC448ADC6F /* Pods-GoogleFontPicker.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		12A5EA62224CA226005EC37A /* GoogleFontPicker */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 12A5EA75224CA228005EC37A /* Build configuration list for PBXNativeTarget "GoogleFontPicker" */;
+			buildPhases = (
+				D8F93F79E8C8D640ADF3408E /* [CP] Check Pods Manifest.lock */,
+				12A5EA5F224CA226005EC37A /* Sources */,
+				12A5EA60224CA226005EC37A /* Frameworks */,
+				12A5EA61224CA226005EC37A /* Resources */,
+				8D2F1A9B47B6D5A6B5241EB7 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GoogleFontPicker;
+			productName = GoogleFontPicker;
+			productReference = 12A5EA63224CA226005EC37A /* GoogleFontPicker.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		12A5EA5B224CA226005EC37A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1020;
+				LastUpgradeCheck = 1020;
+				ORGANIZATIONNAME = "Charles Ku";
+				TargetAttributes = {
+					12A5EA62224CA226005EC37A = {
+						CreatedOnToolsVersion = 10.2;
+					};
+				};
+			};
+			buildConfigurationList = 12A5EA5E224CA226005EC37A /* Build configuration list for PBXProject "GoogleFontPicker" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 12A5EA5A224CA226005EC37A;
+			productRefGroup = 12A5EA64224CA226005EC37A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				12A5EA62224CA226005EC37A /* GoogleFontPicker */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		12A5EA61224CA226005EC37A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				12A5EA71224CA228005EC37A /* LaunchScreen.storyboard in Resources */,
+				12A5EA6E224CA228005EC37A /* Assets.xcassets in Resources */,
+				12A5EA6C224CA226005EC37A /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8D2F1A9B47B6D5A6B5241EB7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-GoogleFontPicker/Pods-GoogleFontPicker-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GoogleFontPicker/Pods-GoogleFontPicker-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D8F93F79E8C8D640ADF3408E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GoogleFontPicker-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		12A5EA5F224CA226005EC37A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				12A5EA89224DB0DE005EC37A /* Failure.swift in Sources */,
+				12A5EA69224CA226005EC37A /* ViewController.swift in Sources */,
+				12A5EA7D224CA469005EC37A /* WebfontFamily.swift in Sources */,
+				12A5EA7A224CA393005EC37A /* WebfontProvider.swift in Sources */,
+				12A5EA85224CF3B6005EC37A /* DefaultWebfontManager.swift in Sources */,
+				12A5EA90224DB37A005EC37A /* WebfontFamilyObject.swift in Sources */,
+				12A5EA8E224DB328005EC37A /* RealmRepository.swift in Sources */,
+				12A5EA8C224DB305005EC37A /* Repository.swift in Sources */,
+				12A5EA87224DAF94005EC37A /* GoogleWebfontFamily.swift in Sources */,
+				12A5EA83224CF393005EC37A /* WebfontManager.swift in Sources */,
+				12A5EA67224CA226005EC37A /* AppDelegate.swift in Sources */,
+				12A5EA7F224CF044005EC37A /* Webfont.swift in Sources */,
+				12A5EA81224CF30D005EC37A /* GoogleWebfontProvider.swift in Sources */,
+				12A5EA92224DB3B4005EC37A /* WebfontFamilyRepository.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		12A5EA6A224CA226005EC37A /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				12A5EA6B224CA226005EC37A /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		12A5EA6F224CA228005EC37A /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				12A5EA70224CA228005EC37A /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		12A5EA73224CA228005EC37A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		12A5EA74224CA228005EC37A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		12A5EA76224CA228005EC37A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F5782031B14A0EA9F7A04E54 /* Pods-GoogleFontPicker.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8GK474F292;
+				INFOPLIST_FILE = GoogleFontPicker/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = me.charlesku915.GoogleFontPicker;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		12A5EA77224CA228005EC37A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B45ACE21E4D12DAC448ADC6F /* Pods-GoogleFontPicker.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8GK474F292;
+				INFOPLIST_FILE = GoogleFontPicker/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = me.charlesku915.GoogleFontPicker;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		12A5EA5E224CA226005EC37A /* Build configuration list for PBXProject "GoogleFontPicker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				12A5EA73224CA228005EC37A /* Debug */,
+				12A5EA74224CA228005EC37A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		12A5EA75224CA228005EC37A /* Build configuration list for PBXNativeTarget "GoogleFontPicker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				12A5EA76224CA228005EC37A /* Debug */,
+				12A5EA77224CA228005EC37A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 12A5EA5B224CA226005EC37A /* Project object */;
+}
