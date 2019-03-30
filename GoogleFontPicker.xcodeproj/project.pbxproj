@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		122E4104224FDF98007816DD /* FontPickerViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122E4103224FDF98007816DD /* FontPickerViewDataSource.swift */; };
+		122E4106224FDFCC007816DD /* FontPickerViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122E4105224FDFCC007816DD /* FontPickerViewDelegate.swift */; };
+		122E4109224FEBA7007816DD /* UIColor+CK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122E4108224FEBA7007816DD /* UIColor+CK.swift */; };
 		12A5EA67224CA226005EC37A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A5EA66224CA226005EC37A /* AppDelegate.swift */; };
 		12A5EA6E224CA228005EC37A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12A5EA6D224CA228005EC37A /* Assets.xcassets */; };
 		12A5EA71224CA228005EC37A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12A5EA6F224CA228005EC37A /* LaunchScreen.storyboard */; };
@@ -26,7 +29,7 @@
 		12A5EA9A224DD2FB005EC37A /* WebfontRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A5EA99224DD2FB005EC37A /* WebfontRepository.swift */; };
 		12A5EA9C224DD31F005EC37A /* WebfontObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A5EA9B224DD31F005EC37A /* WebfontObject.swift */; };
 		12A5EAA1224DE094005EC37A /* FontPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A5EA9F224DE094005EC37A /* FontPickerViewController.swift */; };
-		12A5EAA2224DE094005EC37A /* FontPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 12A5EAA0224DE094005EC37A /* FontPickerViewController.xib */; };
+		12A5EAA2224DE094005EC37A /* FontPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 12A5EAA0224DE094005EC37A /* FontPickerView.xib */; };
 		12A5EAA4224DE1A5005EC37A /* FontPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A5EAA3224DE1A5005EC37A /* FontPickerView.swift */; };
 		12A5EAA8224DED72005EC37A /* FontFamilyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 12A5EAA6224DED72005EC37A /* FontFamilyCollectionViewCell.xib */; };
 		12A5EAAC224E1ADC005EC37A /* FontFamilyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A5EAAB224E1ADC005EC37A /* FontFamilyCollectionViewCell.swift */; };
@@ -37,6 +40,9 @@
 
 /* Begin PBXFileReference section */
 		0E112B9EDB8136C60DA850DA /* Pods_GoogleFontPicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoogleFontPicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		122E4103224FDF98007816DD /* FontPickerViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontPickerViewDataSource.swift; sourceTree = "<group>"; };
+		122E4105224FDFCC007816DD /* FontPickerViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontPickerViewDelegate.swift; sourceTree = "<group>"; };
+		122E4108224FEBA7007816DD /* UIColor+CK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+CK.swift"; sourceTree = "<group>"; };
 		12A5EA63224CA226005EC37A /* GoogleFontPicker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoogleFontPicker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12A5EA66224CA226005EC37A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		12A5EA6D224CA228005EC37A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -58,7 +64,7 @@
 		12A5EA99224DD2FB005EC37A /* WebfontRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebfontRepository.swift; sourceTree = "<group>"; };
 		12A5EA9B224DD31F005EC37A /* WebfontObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebfontObject.swift; sourceTree = "<group>"; };
 		12A5EA9F224DE094005EC37A /* FontPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontPickerViewController.swift; sourceTree = "<group>"; };
-		12A5EAA0224DE094005EC37A /* FontPickerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FontPickerViewController.xib; sourceTree = "<group>"; };
+		12A5EAA0224DE094005EC37A /* FontPickerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FontPickerView.xib; sourceTree = "<group>"; };
 		12A5EAA3224DE1A5005EC37A /* FontPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontPickerView.swift; sourceTree = "<group>"; };
 		12A5EAA6224DED72005EC37A /* FontFamilyCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FontFamilyCollectionViewCell.xib; sourceTree = "<group>"; };
 		12A5EAAB224E1ADC005EC37A /* FontFamilyCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontFamilyCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -80,6 +86,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		122E4107224FEB87007816DD /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				122E4108224FEBA7007816DD /* UIColor+CK.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		12A5EA5A224CA226005EC37A = {
 			isa = PBXGroup;
 			children = (
@@ -110,6 +124,7 @@
 				12A5EA9D224DE06D005EC37A /* Pages */,
 				12A5EA8A224DB24D005EC37A /* Repository */,
 				12A5EA78224CA381005EC37A /* Services */,
+				122E4107224FEB87007816DD /* Utilities */,
 			);
 			path = GoogleFontPicker;
 			sourceTree = "<group>";
@@ -129,9 +144,9 @@
 			isa = PBXGroup;
 			children = (
 				12A5EA97224DD0AF005EC37A /* DefaultWebfont.swift */,
-				12A5EA7C224CA469005EC37A /* WebfontFamily.swift */,
-				12A5EA7E224CF044005EC37A /* Webfont.swift */,
 				12A5EA86224DAF94005EC37A /* DefaultWebfontFamily.swift */,
+				12A5EA7E224CF044005EC37A /* Webfont.swift */,
+				12A5EA7C224CA469005EC37A /* WebfontFamily.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -139,10 +154,10 @@
 		12A5EA8A224DB24D005EC37A /* Repository */ = {
 			isa = PBXGroup;
 			children = (
-				12A5EA94224DB4DA005EC37A /* Webfont */,
-				12A5EA93224DB4C8005EC37A /* WebfontFamily */,
 				12A5EA8B224DB305005EC37A /* Repository.swift */,
 				12A5EA8D224DB328005EC37A /* RealmRepository.swift */,
+				12A5EA94224DB4DA005EC37A /* Webfont */,
+				12A5EA93224DB4C8005EC37A /* WebfontFamily */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -159,8 +174,8 @@
 		12A5EA94224DB4DA005EC37A /* Webfont */ = {
 			isa = PBXGroup;
 			children = (
-				12A5EA99224DD2FB005EC37A /* WebfontRepository.swift */,
 				12A5EA9B224DD31F005EC37A /* WebfontObject.swift */,
+				12A5EA99224DD2FB005EC37A /* WebfontRepository.swift */,
 			);
 			path = Webfont;
 			sourceTree = "<group>";
@@ -176,11 +191,13 @@
 		12A5EA9E224DE075005EC37A /* FontPickerViewController */ = {
 			isa = PBXGroup;
 			children = (
-				12A5EAAA224E1A95005EC37A /* FontVariantCollectionViewCell */,
-				12A5EAA9224DED79005EC37A /* FontFamilyCollectionViewCell */,
-				12A5EA9F224DE094005EC37A /* FontPickerViewController.swift */,
-				12A5EAA0224DE094005EC37A /* FontPickerViewController.xib */,
 				12A5EAA3224DE1A5005EC37A /* FontPickerView.swift */,
+				12A5EA9F224DE094005EC37A /* FontPickerViewController.swift */,
+				122E4103224FDF98007816DD /* FontPickerViewDataSource.swift */,
+				122E4105224FDFCC007816DD /* FontPickerViewDelegate.swift */,
+				12A5EAA0224DE094005EC37A /* FontPickerView.xib */,
+				12A5EAA9224DED79005EC37A /* FontFamilyCollectionViewCell */,
+				12A5EAAA224E1A95005EC37A /* FontVariantCollectionViewCell */,
 			);
 			path = FontPickerViewController;
 			sourceTree = "<group>";
@@ -283,7 +300,7 @@
 				12A5EA71224CA228005EC37A /* LaunchScreen.storyboard in Resources */,
 				12A5EAB0224E20FB005EC37A /* FontVariantCollectionViewCell.xib in Resources */,
 				12A5EAA8224DED72005EC37A /* FontFamilyCollectionViewCell.xib in Resources */,
-				12A5EAA2224DE094005EC37A /* FontPickerViewController.xib in Resources */,
+				12A5EAA2224DE094005EC37A /* FontPickerView.xib in Resources */,
 				12A5EA6E224CA228005EC37A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -350,6 +367,7 @@
 				12A5EA87224DAF94005EC37A /* DefaultWebfontFamily.swift in Sources */,
 				12A5EA83224CF393005EC37A /* WebfontManager.swift in Sources */,
 				12A5EA67224CA226005EC37A /* AppDelegate.swift in Sources */,
+				122E4104224FDF98007816DD /* FontPickerViewDataSource.swift in Sources */,
 				12A5EAAC224E1ADC005EC37A /* FontFamilyCollectionViewCell.swift in Sources */,
 				12A5EAAF224E20FB005EC37A /* FontVariantCollectionViewCell.swift in Sources */,
 				12A5EA7F224CF044005EC37A /* Webfont.swift in Sources */,
@@ -357,6 +375,8 @@
 				12A5EAA4224DE1A5005EC37A /* FontPickerView.swift in Sources */,
 				12A5EA9C224DD31F005EC37A /* WebfontObject.swift in Sources */,
 				12A5EA98224DD0AF005EC37A /* DefaultWebfont.swift in Sources */,
+				122E4106224FDFCC007816DD /* FontPickerViewDelegate.swift in Sources */,
+				122E4109224FEBA7007816DD /* UIColor+CK.swift in Sources */,
 				12A5EA92224DB3B4005EC37A /* WebfontFamilyRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

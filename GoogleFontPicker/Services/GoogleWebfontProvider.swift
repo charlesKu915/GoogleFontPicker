@@ -10,11 +10,9 @@ import Alamofire
 
 class GoogleWebfontProvider: WebfontProvider {
     
-    var versionComparator: WebfontVersionComparator?
+    var versionComparator: WebfontVersionChecker?
     
-    static var providerIdentifier: String {
-        return "google"
-    }
+    static var providerIdentifier: String { return "google" }
     
     private var apiKey: String
     
@@ -31,12 +29,15 @@ class GoogleWebfontProvider: WebfontProvider {
                 for item in items {
                     do {
                         let family = try DefaultWebfontFamily(with: item)
-                        if self.versionComparator?.needUpdage(for: family) ?? true {
+                        if self.versionComparator?.needUpdate(for: family) ?? true {
                             families.append(family)
                             if let files = item["files"] as? [String: String] {
                                 for variant in family.variants {
                                     if let filePath = files[variant], let onlineUrl = URL(string: filePath) {
-                                        fonts.append(DefaultWebfont(providerIdentifier: GoogleWebfontProvider.providerIdentifier, familName: family.name, variant: variant, onlineUrl: onlineUrl))
+                                        fonts.append(DefaultWebfont(providerIdentifier: GoogleWebfontProvider.providerIdentifier,
+                                                                    familName: family.name,
+                                                                    variant: variant,
+                                                                    onlineUrl: onlineUrl))
                                     } else {
                                         // Wired... it should not be happened, caused by server error
                                     }
@@ -45,17 +46,21 @@ class GoogleWebfontProvider: WebfontProvider {
                         } else {
                             // No need to append to array because there is no difference with local
                         }
+                    } catch Failure.googleItemFormatMappingIssue {
+                        // Need to check google font return format
+                        print("Google Font API return format mapping issue occured")
                     } catch {
                         // Issue occured
+                        print("Unexpected Exception")
                     }
                 }
                 handler(.success(webfontFamilies: families, webfonts: fonts))
             } else if let error = response.error {
                 handler(.failed(reason: error))
+            } else {
+                handler(.failed(reason: Failure.googleApiKeyIssue))
             }
         }
     }
-    
-    
     
 }

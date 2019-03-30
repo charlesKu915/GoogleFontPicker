@@ -18,6 +18,11 @@
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>Configuration</key>
+	<dict>
+		<key>googleFontApiKey</key>
+		<string>AIzaSyBJOnY-rjORFDkzR6OU9--21mIKae33p30</string>
+	</dict>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>

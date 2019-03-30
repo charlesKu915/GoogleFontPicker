@@ -19,17 +19,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         do {
-            self.realm = try Realm(configuration: .defaultConfiguration)
-            print(self.realm?.configuration.fileURL)
-            self.webfontManager = DefaultWebfontManager(familyRepository: WebfontFamilyRepository(self.realm!),
-                                                        fontRepository: WebfontRepository(self.realm!),
-                                                        googleFontApiKey: "AIzaSyBJOnY-rjORFDkzR6OU9--21mIKae33p30")
+            if let configuration = Bundle.main.infoDictionary?["Configuration"] as? [String: Any],
+                let googleFontApiKey = configuration["googleFontApiKey"] as? String {
+                self.realm = try Realm(configuration: .defaultConfiguration)
+                self.webfontManager = DefaultWebfontManager(familyRepository: WebfontFamilyRepository(self.realm!),
+                                                            fontRepository: WebfontRepository(self.realm!),
+                                                            googleFontApiKey: googleFontApiKey)
+            }
         } catch {
             
         }
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
-        let rootViewController = FontPickerViewController(nibName: "FontPickerViewController", bundle: Bundle.main)
+        let rootViewController = FontPickerViewController(nibName: "FontPickerView", bundle: Bundle.main)
         rootViewController.webfontManager = self.webfontManager
         self.window?.rootViewController = rootViewController
         self.window?.makeKeyAndVisible()

@@ -8,29 +8,6 @@
 
 import UIKit
 
-protocol FontPickerViewDataSource {
-    
-    func currentFontOnFontPickerView(_ view: FontPickerView) -> UIFont
-    
-    func totalFontCountOnFontPickerView(_ view: FontPickerView) -> Int
-    
-    func fontPickerView(_ view: FontPickerView, webfontFamilyInfoAt index: Int) -> (name: String, font: UIFont?)
-    
-    func currentFontVariantCountOnFontPickerView(_ view: FontPickerView) -> Int
-    
-    func currentFontVariantIndexOnFontPickerView(_ view: FontPickerView) -> Int
-    
-    func fontPickerView(_ view: FontPickerView, webfontInfoAt index: Int) -> (variant: String, downloaded: Bool)
-}
-
-protocol FontPickerViewDelegate {
-    
-    func fontPickerView(_ view: FontPickerView, fontCellSelectedWith index: Int)
-    
-    func fontPickerView(_ view: FontPickerView, fontVariantSelectedWith index: Int)
-    
-}
-
 class FontFamilyLayoutFlow: UICollectionViewFlowLayout {
     
     override func prepare() {
@@ -52,12 +29,22 @@ class FontVariantLayoutFlow: UICollectionViewFlowLayout {
         self.minimumLineSpacing = 10
         self.minimumInteritemSpacing = 10
         self.itemSize = CGSize(width: 100, height: 40)
-        self.sectionInset = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
+        self.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
     }
     
 }
 
-class FontPickerView: UIView, UICollectionViewDataSource, UICollectionViewDelegate {
+class FontPickerView: UIView {
+    
+    private let ShowLabelFontSize: CGFloat = 40.0
+    
+    private let FontFamilyNameFontSize: CGFloat = 18.0
+    
+    private let VariantCollectionViewHeight: CGFloat = 50.0
+    
+    private let FontFamilyCellIdentifier: String = "FontFamilyCollectionViewCell"
+    
+    private let FontVariantCellIdentifier: String = "FontVariantCollectionViewCell"
     
     @IBOutlet private weak var loadingMask: UIView!
     
@@ -73,41 +60,38 @@ class FontPickerView: UIView, UICollectionViewDataSource, UICollectionViewDelega
     
     public var dataSource: FontPickerViewDataSource? {
         didSet {
-            
+            self.reloadFontList()
         }
     }
-    
-    private var currentIndex: Int = 0
     
     public var delegate: FontPickerViewDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         self.fontFamilyCollectionView.collectionViewLayout = FontFamilyLayoutFlow()
-        self.fontFamilyCollectionView.register(UINib.init(nibName: "FontFamilyCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "FontFamilyCollectionViewCell")
+        self.fontFamilyCollectionView.register(UINib.init(nibName: FontFamilyCellIdentifier, bundle: nil), forCellWithReuseIdentifier: FontFamilyCellIdentifier)
         self.fontFamilyCollectionView.dataSource = self
         self.fontFamilyCollectionView.delegate = self
         
         self.fontVariantsCollectionView.collectionViewLayout = FontVariantLayoutFlow()
-        self.fontVariantsCollectionView.register(UINib.init(nibName: "FontVariantCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "FontVariantCollectionViewCell")
+        self.fontVariantsCollectionView.register(UINib.init(nibName: FontVariantCellIdentifier, bundle: nil), forCellWithReuseIdentifier: FontVariantCellIdentifier)
         self.fontVariantsCollectionView.dataSource = self
         self.fontVariantsCollectionView.delegate = self
-        
     }
     
     
-    func showLoadingView(with text: String) {
+    func showLoading() {
         self.loadingMask.isHidden = false
         self.loadingActivityView.startAnimating()
     }
     
-    func hideLoadingView() {
+    func hideLoading() {
         self.loadingMask.isHidden = true
         self.loadingActivityView.stopAnimating()
     }
     
     func updateProgress(progress: Float) {
-        if progress >= 1.0 {
+        if progress >= 1.0  || progress == 0.0 {
             self.progressBar.isHidden = true
         } else {
             self.progressBar.isHidden = false
@@ -135,8 +119,12 @@ class FontPickerView: UIView, UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func currentFontChanged() {
-        self.showLabel.font = self.dataSource?.currentFontOnFontPickerView(self) ?? UIFont.systemFont(ofSize: 40)
+        self.showLabel.font = self.dataSource?.fontPickerView(self, currentFontWithSize: ShowLabelFontSize) ?? UIFont.systemFont(ofSize: ShowLabelFontSize)
     }
+    
+}
+
+extension FontPickerView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == self.fontFamilyCollectionView {
@@ -148,56 +136,29 @@ class FontPickerView: UIView, UICollectionViewDataSource, UICollectionViewDelega
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == self.fontFamilyCollectionView {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FontFamilyCollectionViewCell", for: indexPath) as! FontFamilyCollectionViewCell
-            cell.fontInfo = self.dataSource?.fontPickerView(self, webfontFamilyInfoAt: indexPath.item) ?? ("Error", nil)
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FontFamilyCellIdentifier, for: indexPath) as! FontFamilyCollectionViewCell
+            cell.fontInfo = self.dataSource?.fontPickerView(self, webfontFamilyInfoAt: indexPath.item, withFontSize: FontFamilyNameFontSize) ??
+                (name: "*ERROR*", font: UIFont.systemFont(ofSize: FontFamilyNameFontSize))
             return cell
         } else {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FontVariantCollectionViewCell", for: indexPath) as! FontVariantCollectionViewCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FontVariantCellIdentifier, for: indexPath) as! FontVariantCollectionViewCell
             cell.variantInfo = self.dataSource?.fontPickerView(self, webfontInfoAt: indexPath.item) ?? ("", false)
             return cell
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+}
 
-    }
-    
-//    var needHold: Bool = false
-//    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-//        if collectionView == self.fontVariantsCollectionView {
-//            if let info = self.dataSource?.fontPickerView(self, webfontInfoAt: indexPath.item),
-//                info.downloaded == false {
-//                self.needHold = true
-//                return false
-//            } else {
-//                return true
-//            }
-//        } else {
-//            return true
-//        }
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, shouldDeselectItemAt indexPath: IndexPath) -> Bool {
-//
-//    }
+extension FontPickerView: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == self.fontFamilyCollectionView {
-            self.delegate?.fontPickerView(self, fontCellSelectedWith: indexPath.item)
+            self.delegate?.fontPickerView(self, fontFamilySelectedAt: indexPath.item)
             self.fontVariantsCollectionView.reloadData()
             self.fontVariantsCollectionView.selectItem(at: IndexPath(item: self.dataSource?.currentFontVariantIndexOnFontPickerView(self) ?? 0, section: 0), animated: false, scrollPosition: .top)
         } else {
-            self.delegate?.fontPickerView(self, fontVariantSelectedWith: indexPath.item)
+            self.delegate?.fontPickerView(self, fontVariantSelectedAt: indexPath.item)
         }
     }
     
-    
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
-
 }

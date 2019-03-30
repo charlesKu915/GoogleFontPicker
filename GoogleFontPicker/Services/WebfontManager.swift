@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+
 protocol WebfontManagerEventListener: class {
     
     func webfontManagerFetchListSuccess(_ manager: WebfontManager)

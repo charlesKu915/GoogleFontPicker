@@ -10,6 +10,8 @@ import Foundation
 
 enum Failure: Error {
     
+    case googleApiKeyIssue
+    
     case googleItemFormatMappingIssue
     
     case needOverrideMethod

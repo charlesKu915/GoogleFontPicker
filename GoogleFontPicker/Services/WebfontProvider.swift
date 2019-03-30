@@ -8,13 +8,11 @@
 
 import Foundation
 
-
-protocol WebfontVersionComparator {
+protocol WebfontVersionChecker: class {
     
-    func needUpdage(for webfontFamily: WebfontFamily) -> Bool
+    func needUpdate(for webfontFamily: WebfontFamily) -> Bool
     
 }
-
 
 enum FetchWebfontListResult {
     case success(webfontFamilies: [WebfontFamily], webfonts: [Webfont])
@@ -33,10 +31,8 @@ protocol WebfontProvider: class {
     
     static var providerIdentifier: String { get }
     
-    var versionComparator: WebfontVersionComparator? { get set }
+    var versionComparator: WebfontVersionChecker? { get set }
     
     func fetchWebfontList(handleBy handler: @escaping FetchWebfontListResultHandler)
     
 }
-
-

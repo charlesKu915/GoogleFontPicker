@@ -12,12 +12,12 @@ class FontFamilyCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet private weak var dispalyLabel: UILabel!
     
-    var fontInfo: (name: String, font: UIFont?) = ("", nil) {
+    var fontInfo: (name: String, font: UIFont)? {
         didSet {
-            if let label = self.dispalyLabel {
-                label.font = self.fontInfo.font ?? UIFont.systemFont(ofSize: 10)
-                label.adjustsFontForContentSizeCategory = true
-                label.text = self.fontInfo.name
+            if let fontInfo = self.fontInfo {
+                self.dispalyLabel.font = fontInfo.font
+                self.dispalyLabel.adjustsFontForContentSizeCategory = true
+                self.dispalyLabel.text = fontInfo.name
             }
         }
     }
@@ -33,7 +33,7 @@ class FontFamilyCollectionViewCell: UICollectionViewCell {
         // Initialization code
         self.layer.cornerRadius = 5.0
         self.layer.masksToBounds = true
-        self.layer.borderColor = UIColor(red: 21.0/255.0, green: 31.0/255.0, blue: 44.0/255.0, alpha: 1).cgColor
+        self.layer.borderColor = UIColor.ckBlue.cgColor
     }
 
 }

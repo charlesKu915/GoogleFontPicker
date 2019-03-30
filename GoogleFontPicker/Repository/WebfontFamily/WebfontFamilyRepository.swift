@@ -30,21 +30,13 @@ class WebfontFamilyRepository: RealmRepository<String, WebfontFamily, WebfontFam
     }
     
     override func fromRealmObject(_ object: WebfontFamilyObject) throws -> WebfontFamily {
-        return try DefaultWebfontFamily(withRealm: object)
-    }
-    
-}
-
-extension DefaultWebfontFamily {
-    
-    convenience init(withRealm object: WebfontFamilyObject) throws {
-        self.init(providerIdentifier: object.providerIdentifier,
-                  familyName: object.name,
-                  category: object.category,
-                  variants: object.variants.components(separatedBy: ","),
-                  subsets: object.subsets.components(separatedBy: ","),
-                  version: object.version,
-                  defaultVariant: object.defaultVariant)
+        return DefaultWebfontFamily(providerIdentifier: object.providerIdentifier,
+                                    familyName: object.name,
+                                    category: object.category,
+                                    variants: object.variants.components(separatedBy: ","),
+                                    subsets: object.subsets.components(separatedBy: ","),
+                                    version: object.version,
+                                    defaultVariant: object.defaultVariant)
     }
     
 }

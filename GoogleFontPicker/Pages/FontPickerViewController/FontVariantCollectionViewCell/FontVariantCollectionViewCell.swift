@@ -12,18 +12,22 @@ class FontVariantCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet private weak var variantLabel: UILabel!
 
-    var variantInfo: (variant: String, downloaded: Bool) = ("", false) {
+    var variantInfo: (variant: String, downloaded: Bool)? {
         didSet {
-            self.variantLabel.text = self.variantInfo.variant.uppercased()
-            self.backgroundColor = self.isSelected ? UIColor.darkGray : (self.variantInfo.downloaded ? UIColor.clear : UIColor(displayP3Red: 0.95, green: 0.95, blue: 0.95, alpha: 1))
-            self.variantLabel.textColor = self.isSelected ? UIColor.white : UIColor.darkGray
+            if let variantInfo = self.variantInfo {
+                self.variantLabel.text = variantInfo.variant.uppercased()
+                self.backgroundColor = self.isSelected ? .darkGray : (variantInfo.downloaded ? .clear : .ckGray)
+                self.variantLabel.textColor = self.isSelected ? .white : .darkGray
+            }
         }
     }
     
     override var isSelected: Bool {
         didSet {
-            self.backgroundColor = self.isSelected ? UIColor.darkGray : (self.variantInfo.downloaded ? UIColor.clear : UIColor(displayP3Red: 0.95, green: 0.95, blue: 0.95, alpha: 1))
-            self.variantLabel.textColor = self.isSelected ? UIColor.white : UIColor.darkGray
+            if let variantInfo = self.variantInfo {
+                self.backgroundColor = self.isSelected ? .darkGray : (variantInfo.downloaded ? .clear : .ckGray)
+                self.variantLabel.textColor = self.isSelected ? .white : .darkGray
+            }
         }
     }
     

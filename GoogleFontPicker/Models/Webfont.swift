@@ -29,7 +29,7 @@ protocol Webfont: class {
 extension Webfont {
     
     var identifier: String {
-        return self.providerIdentifier + ":" + self.familyName + "/" + self.variant
+        return "\(self.providerIdentifier)|\(self.familyName)[\(self.variant)]"
     }
     
 }

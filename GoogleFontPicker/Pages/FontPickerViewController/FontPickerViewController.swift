@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FontPickerViewController: UIViewController, WebfontManagerEventListener, FontPickerViewDataSource, FontPickerViewDelegate {
+class FontPickerViewController: UIViewController {
     
     var webfontManager: WebfontManager? {
         didSet {
@@ -19,15 +19,16 @@ class FontPickerViewController: UIViewController, WebfontManagerEventListener, F
     }
     
     var families: [WebfontFamily] = []
-    var totalNeedDownloadCount: Int {
-        return self.families.count
-    }
+    
+    var totalNeedDownloadCount: Int = 0
     var currentDownloadedCount: Int = 0 {
         didSet {
-            self.fontPickerView.updateProgress(progress: Float(self.currentDownloadedCount)/Float(self.totalNeedDownloadCount))
+            if totalNeedDownloadCount > 0 {
+                self.fontPickerView.updateProgress(progress: Float(self.currentDownloadedCount)/Float(self.totalNeedDownloadCount))
+            }
         }
     }
-    var selectedIndex: Int = 0 {
+    var selectedFontFamilyIndex: Int = 0 {
         didSet {
             if let current = self.selectedWebfontFamily {
                 self.selectedVariant = current.defaultVariant
@@ -35,17 +36,17 @@ class FontPickerViewController: UIViewController, WebfontManagerEventListener, F
         }
     }
     
-    var selectedVariant: String = "" {
-        didSet {
-            self.fontPickerView.currentFontChanged()
+    var selectedWebfontFamily: WebfontFamily? {
+        if self.families.count > self.selectedFontFamilyIndex {
+            return self.families[self.selectedFontFamilyIndex]
+        } else {
+            return nil
         }
     }
     
-    var selectedWebfontFamily: WebfontFamily? {
-        if self.families.count > self.selectedIndex {
-            return self.families[self.selectedIndex]
-        } else {
-            return nil
+    var selectedVariant: String = "" {
+        didSet {
+            self.fontPickerView.currentFontChanged()
         }
     }
     
@@ -64,36 +65,40 @@ class FontPickerViewController: UIViewController, WebfontManagerEventListener, F
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        // Do any additional setup after loading the view.
         self.fontPickerView.dataSource = self
         self.fontPickerView.delegate = self
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.fontPickerView.showLoadingView(with: "Fetch font list data...")
+        self.fontPickerView.showLoading()
         self.webfontManager?.fetchWebfontList()
     }
+}
+
+// MARK: FontPickerViewController: WebfontManagerEventListener
+extension FontPickerViewController: WebfontManagerEventListener {
     
     func webfontManagerFetchListSuccess(_ manager: WebfontManager) {
-        self.fontPickerView.hideLoadingView()
+        self.fontPickerView.hideLoading()
         
         self.families = self.webfontManager?.webfontFamilies ?? []
-        print("success fetch list with #\(self.families.count)")
         self.fontPickerView.reloadFontList()
-        self.currentDownloadedCount = 0
         for family in self.webfontManager?.webfontFamilies ?? [] {
             if let font = self.webfontManager?.defaultWebfont(for: family) {
                 self.webfontManager?.downloadFont(for: font)
+                self.totalNeedDownloadCount = self.totalNeedDownloadCount + 1
             } else {
                 self.increaseCurrentDownloadCount()
             }
         }
+        self.currentDownloadedCount = 0
     }
     
     func webfontManagerFetchListFailed(_ manager: WebfontManager) {
-        self.fontPickerView.hideLoadingView()
+        self.fontPickerView.hideLoading()
+        let alert = UIAlertController(title: "ACCESS FAILED", message: "No networking or no assign google api key?", preferredStyle: .actionSheet)
+        self.show(alert, sender: nil)
     }
     
     func webfontManager(_ manager: WebfontManager, downloadedWebfont webfont: Webfont) {
@@ -117,29 +122,33 @@ class FontPickerViewController: UIViewController, WebfontManagerEventListener, F
         self.currentDownloadedCount = self.currentDownloadedCount + 1
         objc_sync_exit(self)
     }
+}
 
-    func currentFontOnFontPickerView(_ view: FontPickerView) -> UIFont {
+// MARK: FontPickerViewController: FontPickerViewDataSource
+extension FontPickerViewController: FontPickerViewDataSource {
+    
+    func fontPickerView(_ view: FontPickerView, currentFontWithSize size: CGFloat) -> UIFont {
         if self.families.count > 0 {
-            let currentFamily = self.families[self.selectedIndex]
+            let currentFamily = self.families[self.selectedFontFamilyIndex]
             if let currentWebfont = self.webfontManager?.webfont(for: currentFamily, with: self.selectedVariant),
-                let font = self.webfontManager?.font(of: currentWebfont, size: 40) {
+                let font = self.webfontManager?.font(of: currentWebfont, size: size) {
                 return font
             }
         }
-        return UIFont.systemFont(ofSize: 40)
+        return UIFont.systemFont(ofSize: size)
     }
     
     func totalFontCountOnFontPickerView(_ view: FontPickerView) -> Int {
         return self.families.count
     }
     
-    func fontPickerView(_ view: FontPickerView, webfontFamilyInfoAt index: Int) -> (name: String, font: UIFont?) {
+    func fontPickerView(_ view: FontPickerView, webfontFamilyInfoAt index: Int, withFontSize size: CGFloat) -> (name: String, font: UIFont) {
         if let webfontFamily = self.webfontManager?.webfontFamilies[index],
             let webfont = self.webfontManager?.defaultWebfont(for: webfontFamily) {
-            let font = self.webfontManager?.font(of: webfont, size: 20) ?? UIFont.systemFont(ofSize: 20)
+            let font = self.webfontManager?.font(of: webfont, size: size) ?? UIFont.systemFont(ofSize: size)
             return (webfontFamily.name, font)
         } else {
-            return ("Error", nil)
+            return ("*ERROR*", UIFont.systemFont(ofSize: size))
         }
     }
     
@@ -172,33 +181,26 @@ class FontPickerViewController: UIViewController, WebfontManagerEventListener, F
             fatalError()
         }
     }
+}
+
+// MARK: FontPickerViewController:FontPickerViewDelegate
+extension FontPickerViewController: FontPickerViewDelegate {
     
-    func fontPickerView(_ view: FontPickerView, fontCellSelectedWith index: Int) {
-        self.selectedIndex = index
+    func fontPickerView(_ view: FontPickerView, fontFamilySelectedAt index: Int) {
+        self.selectedFontFamilyIndex = index
     }
     
-    func fontPickerView(_ view: FontPickerView, fontVariantSelectedWith index: Int) {
+    func fontPickerView(_ view: FontPickerView, fontVariantSelectedAt index: Int) {
         if let family = self.selectedWebfontFamily {
             let variant = family.variants[index]
             self.selectedVariant = variant
             if let webfont = self.selectedWebfont, webfont.localFileName.isEmpty {
                 self.webfontManager?.downloadFont(for: webfont)
+                self.totalNeedDownloadCount = self.totalNeedDownloadCount + 1
             } else {
                 self.fontPickerView.currentFontChanged()
             }
         }
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
-    
-
 }

@@ -31,7 +31,7 @@ protocol WebfontFamily: class {
 extension WebfontFamily {
     
     var identifier: String {
-        return self.providerIdentifier + ":" + self.name
+        return "\(self.providerIdentifier)|\(self.name)"
     }
     
 }

@@ -9,22 +9,33 @@
 import Foundation
 import Alamofire
 
-class DefaultWebfontManager: WebfontManager, WebfontVersionComparator {
+class DefaultWebfontManager: WebfontManager {
     
     var eventListener: WebfontManagerEventListener?
-    
-    private var providers: [WebfontProvider] = []
-    
-    private var familyRepository: WebfontFamilyRepository
-    
-    private var fontRepository: WebfontRepository
-    
-    private var loadFontNameMap: [String: String] = [:]
     
     var webfontFamilies: [WebfontFamily] {
         return self.familyRepository.getAll()
     }
     
+    // Array to store all providers
+    private var providers: [WebfontProvider] = []
+    
+    // Used to save webfont families to local database
+    private var familyRepository: WebfontFamilyRepository
+    
+    // Used to save webfont to local database
+    private var fontRepository: WebfontRepository
+    
+    // The map of identifier of webfont with loading font name
+    private var loadFontNameMap: [String: String] = [:]
+    
+    private var fontRefMap: [String: CGFont] = [:]
+    
+    private var inMemoryFont: [String] = []
+    
+    /**
+     
+     */
     init(familyRepository: WebfontFamilyRepository,
          fontRepository: WebfontRepository,
          googleFontApiKey: String) {
@@ -41,6 +52,9 @@ class DefaultWebfontManager: WebfontManager, WebfontVersionComparator {
         self.providers.removeAll()
     }
     
+    /*
+     
+     */
     func fetchWebfontList() {
         let queue = DispatchQueue.init(label: "fetchList")
         let group = DispatchGroup()
@@ -66,22 +80,12 @@ class DefaultWebfontManager: WebfontManager, WebfontVersionComparator {
             }
         }
         
-        
         group.notify(queue: .main) {
             if success {
                 self.eventListener?.webfontManagerFetchListSuccess(self)
             } else {
                 self.eventListener?.webfontManagerFetchListFailed(self)
             }
-        }
-        
-    }
-    
-    func needUpdage(for webfontFamily: WebfontFamily) -> Bool {
-        if let local = self.familyRepository.get(identified: webfontFamily.identifier) {
-            return local.version != webfontFamily.version
-        } else {
-            return true
         }
         
     }
@@ -95,7 +99,7 @@ class DefaultWebfontManager: WebfontManager, WebfontVersionComparator {
     }
     
     func webfont(for family: WebfontFamily, with variant: String) -> Webfont? {
-        let identifier = family.identifier + "/" + variant
+        let identifier = "\(family.identifier)[\(variant)]"
         return self.fontRepository.get(identified: identifier)
     }
     
@@ -103,23 +107,23 @@ class DefaultWebfontManager: WebfontManager, WebfontVersionComparator {
         if let loadFontName = self.loadFontNameMap[webfont.identifier] {
             return UIFont(name: loadFontName, size: size)
         } else {
-            let loadFontName = self.loadFontData(of: webfont)
+            let loadFontName = self.loadFont(of: webfont)
             return UIFont(name: loadFontName, size: size)
         }
     }
     
-    private func loadFontData(of webfont: Webfont) -> String {
+    private func loadFont(of webfont: Webfont) -> String {
         do {
             if !webfont.localFileName.isEmpty {
                 let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
                 let fileURL = documentsURL.appendingPathComponent("\(webfont.providerIdentifier)/\(webfont.localFileName)")
-                var fontError: Unmanaged<CFError>?
                 if let fontData = try? Data(contentsOf: fileURL) as CFData,
                     let dataProvider = CGDataProvider(data: fontData) {
-                    _ = UIFont()
                     let fontRef = CGFont(dataProvider)
+                    var fontError: Unmanaged<CFError>?
                     if CTFontManagerRegisterGraphicsFont(fontRef!, &fontError) {
-                        if let postScriptName = fontRef?.postScriptName as? String {
+                        if let postScriptName = fontRef?.postScriptName as String? {
+                            self.fontRefMap[webfont.identifier] = fontRef
                             self.loadFontNameMap[webfont.identifier] = postScriptName
                             return postScriptName
                         }
@@ -130,6 +134,14 @@ class DefaultWebfontManager: WebfontManager, WebfontVersionComparator {
         return ""
     }
     
+    private func releaseFont(of webfont: Webfont) {
+        if let fontRef = self.fontRefMap[webfont.identifier] {
+            var fontError: Unmanaged<CFError>?
+            if CTFontManagerUnregisterGraphicsFont(fontRef, &fontError) {
+                self.loadFontNameMap.removeValue(forKey: webfont.identifier)
+            }
+        }
+    }
     
     func downloadFont(for webfont: Webfont) {
         guard webfont.localFileName.isEmpty else { return }
@@ -152,9 +164,7 @@ class DefaultWebfontManager: WebfontManager, WebfontVersionComparator {
     private func download(font: Webfont, handleBy handler: @escaping DownloadWebfontResultHandler) {
         let destination: DownloadRequest.DownloadFileDestination = { _, _ in
             let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-            
             let fileURL = documentsURL.appendingPathComponent("\(font.providerIdentifier)/\(font.onlineUrl.lastPathComponent)")
-            
             return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
         }
         
@@ -170,4 +180,17 @@ class DefaultWebfontManager: WebfontManager, WebfontVersionComparator {
             }
         }
     }
+}
+
+extension DefaultWebfontManager: WebfontVersionChecker {
+    
+    func needUpdate(for webfontFamily: WebfontFamily) -> Bool {
+        if let local = self.familyRepository.get(identified: webfontFamily.identifier) {
+            return local.version != webfontFamily.version
+        } else {
+            return true
+        }
+        
+    }
+    
 }
